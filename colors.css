@@ -1,0 +1,16 @@
+:root {
+  /* Base Colors */
+  --bg-primary-color: #830C0F;
+  --bg-secondary-color: #525457;
+  --bg-tertiary-color: #1E1E1E;
+
+  /* Text & Font Colors */
+  --bg-menu-color: #fff;
+  --font-primary-color: #fff;
+  --font-secondary-color: #1E1E1E;
+  --font-tertiary-color: #830C0F;
+
+  /* Buttons */
+  --button-primary-color: #e50914; /* Coca-Cola red */
+  --text-primary-color: #fff;
+}

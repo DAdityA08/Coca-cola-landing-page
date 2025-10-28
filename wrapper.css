@@ -1,0 +1,381 @@
+/* =======================================
+   GLOBAL STYLES
+======================================= */
+:root {
+  --bg-primary-color: #e41b17; /* Coca-Cola red */
+  --text-primary-color: #ffffff;
+  --font-primary-color: #ffffff;
+  --button-primary-color: #ff2020;
+  --accent-dark: #a1000f;
+}
+
+/* Reset and base behavior */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: var(--bg-primary-color);
+  color: var(--font-primary-color);
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* =======================================
+   WRAPPER & SECTIONS
+======================================= */
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #b4000f 60%, #ffffff 40%);
+  color: var(--text-primary-color);
+  transition: all 0.5s ease-in-out;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+/* Alternating background sections */
+section:nth-child(odd) {
+  background: linear-gradient(120deg, #b4000f 60%, #ffffff 40%);
+  color: #fff;
+}
+
+section:nth-child(even) {
+  background: linear-gradient(120deg, #ffffff 60%, #b4000f 40%);
+  color: #222;
+}
+
+@media (max-width: 991px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+}
+
+/* =======================================
+   HERO SECTION + PARALLAX
+======================================= */
+.hero {
+  background: url('assets/coke001.png') center/cover no-repeat fixed;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+  color: #f0f0f0;
+}
+
+/* =======================================
+   COCA-COLA BUTTON GLOW
+======================================= */
+button, .btn {
+  background: var(--button-primary-color);
+  border: none;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button::before, .btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+button:hover::before, .btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+button:hover, .btn:hover {
+  background: #ff141f;
+  box-shadow: 0 0 20px #ff141f, 0 0 40px #ff141f;
+}
+
+/* =======================================
+   FLOATING BOTTLE + BUBBLES ANIMATION
+======================================= */
+.imageBox {
+  position: relative;
+  z-index: 2;
+}
+
+.imageBox img {
+  max-width: 260px;
+  animation: floatBottle 4s ease-in-out infinite;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+}
+
+.imageBox img:hover {
+  transform: scale(1.05) rotate(-3deg);
+  filter: drop-shadow(0 20px 25px rgba(255, 20, 31, 0.6));
+}
+
+/* Floating animation */
+@keyframes floatBottle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* =======================================
+   FIZZY BUBBLE EFFECT 🫧
+======================================= */
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  animation: rise 8s infinite ease-in;
+  opacity: 0.6;
+}
+
+.bubble:nth-child(1) { left: 10%; animation-delay: 0s; }
+.bubble:nth-child(2) { left: 30%; animation-delay: 2s; width: 12px; height: 12px; }
+.bubble:nth-child(3) { left: 50%; animation-delay: 4s; width: 8px; height: 8px; }
+.bubble:nth-child(4) { left: 70%; animation-delay: 1s; width: 14px; height: 14px; }
+.bubble:nth-child(5) { left: 90%; animation-delay: 3s; width: 9px; height: 9px; }
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-800px) scale(0.5); opacity: 0; }
+}
+
+/* =======================================
+   SCROLL REVEAL EFFECTS
+======================================= */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: reveal 1.2s ease forwards;
+}
+
+section:nth-child(odd) { animation-delay: 0.3s; }
+section:nth-child(even) { animation-delay: 0.6s; }
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================================
+   RESPONSIVE DESIGN
+======================================= */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  button, .btn {
+    padding: 0.7rem 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 30px 20px;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ========== PURE CSS CAN SWITCHER ========== */
+.imageBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.imageBox input {
+  display: none;
+}
+
+.can-display {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.can-display img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95) rotate(-3deg);
+  transition: all 0.8s ease;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* Radio selection logic */
+#can1:checked ~ .can-display .can1,
+#can2:checked ~ .can-display .can2,
+#can3:checked ~ .can-display .can3 {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+/* ========== THUMBNAILS ========== */
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 25px;
+  list-style: none;
+  padding: 0;
+}
+
+.thumbnails img {
+  width: 70px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumbnails img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Highlight active thumbnail */
+#can1:checked ~ .thumbnails label[for="can1"] img,
+#can2:checked ~ .thumbnails label[for="can2"] img,
+#can3:checked ~ .thumbnails label[for="can3"] img {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px #ff141f;
+}
+
+/* ========== PURE CSS HERO ANIMATIONS ========== */
+.textBox {
+  animation: fadeSlideIn 1.5s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating can animation */
+@keyframes floatCan {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-1deg); }
+}
+
+.can-display img {
+  animation: floatCan 5s ease-in-out infinite;
+}
+
+/* Fade-in on load for header */
+.header {
+  animation: fadeInDown 1.2s ease forwards;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
